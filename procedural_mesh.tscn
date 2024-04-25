@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://c3r5tw8wpmgmc"]
+
+[ext_resource type="Script" path="res://player_movement.gd" id="1_g3all"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5nvml"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_g2bn4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jjbuf"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5gbp1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_baq0c"]
+albedo_color = Color(1, 0.101961, 0.14902, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sgtvt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f01au"]
+
+[node name="Main" type="Node3D"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.66722, 0)
+script = ExtResource("1_g3all")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+material_override = SubResource("StandardMaterial3D_5nvml")
+gi_mode = 2
+mesh = SubResource("BoxMesh_g2bn4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("BoxShape3D_jjbuf")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, 0.1, 0, 0, 0, 1.5, 0.052938, -0.05, 0)
+physics_material_override = SubResource("PhysicsMaterial_5gbp1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+material_override = SubResource("StandardMaterial3D_baq0c")
+gi_mode = 2
+mesh = SubResource("BoxMesh_sgtvt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_f01au")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.929387, 0.07762, -0.360854, 0.0185089, 0.966608, 0.255588, 0.368643, -0.24422, 0.896916, -1.51784, 1.54731, 3.63789)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.480518, -0.193475, 0.855377, 0.0114156, 0.976658, 0.214495, -0.87691, -0.0933042, 0.471511, 0, 5.94345, -7.15079)
+
+[node name="LightmapProbe" type="LightmapProbe" parent="."]
+transform = Transform3D(0.0873119, -0.214663, 0.972778, 0.0114156, 0.976658, 0.214495, -0.996115, -0.00762309, 0.0877245, 2.38419e-06, 5.94345, 4.70053)
